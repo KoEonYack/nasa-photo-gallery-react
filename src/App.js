@@ -1,9 +1,22 @@
-import React from 'react';
-import './App.css';
-import Users from './Users';
+import React, { Component } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
-  return <Users />;
+import './App.css';
+import Users from './components/Users';
+import Search from './components/Search'
+import Body from './components/Body'
+
+
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <Search/>
+        <Body/>
+        <Users/>
+      </div>
+    );
+  }
 }
 
 export default App;
