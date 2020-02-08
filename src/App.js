@@ -2,19 +2,16 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './App.css';
-//import Users from './components/Users';
-import Users from './components/new_users';
-import Search from './components/Search'
-import Body from './components/Body'
+import Body from './components/new_users';
+import Head from './components/Head'
 
 
 class App extends Component {
   render() {
     return (
       <div>
-        <Search/>
+        <Head/>
         <Body/>
-        <Users/>
       </div>
     );
   }
