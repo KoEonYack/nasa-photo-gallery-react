@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import './App.css';
-import Body from './components/new_users';
+import Body from './components/NasaData';
 import Head from './components/Head'
 
 

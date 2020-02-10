@@ -1,68 +1,57 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# NASA Search Photo SPA
 
-## Available Scripts
 
-In the project directory, you can run:
+### 소개
+![img](./public/index.jpg)
 
-### `yarn start`
+본 웹 어플리케이션은 리엑트 프레임워크를 사용하여 개발하였습니다. 사용자가 검색창에 입력한 값을 images.nasa.gov API(v1.5.3 019­04­18)에서 조회하여 카드 형태로 보여줍니다. 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### 💻 Tech
 
-### `yarn test`
+#### 비동기 처리
+axios 모듈 
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+####  API 호출
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### ✅ TODO 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### 페이지네이션
 
-### `yarn eject`
+``` javascript
+class NasaData extends React.Component {
+    constructor(props) {
+        this.state = {
+            setLoading: false,
+            currentPage: 1,
+            setCurrentPage: 1,
+            postsPerPage: 2,
+            ...
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+render() {
+    this.indexOfLastPost = this.state.currentPage * this.state.postsPerPage;
+    this.indexOfFirstPost = this.indexOfLastPost - this.state.postsPerPage;
+    this.currentPosts = this.state.nasaData.collection.items.slice(this.state.indexOfFirstPost, this.state.indexOfLastPost);
+    ...
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### 느린 로딩
+- 검색시 오래 걸립니다. 
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### 🌹 디자인
+- 앨범 스타일 디자인 참고
+	- [Bootstrap 4 Album example by Benjamin Berglund](https://codepen.io/WeeHorse/pen/PQydzW)
+- 로딩창 디자인
+	- [W3School](https://www.w3schools.com/howto/howto_css_loader.asp)
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 🚀 실행
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+`create-react-app`을 사용하여 만들어져 있으며 `npm install` 후 `npm start` 하여 실행합니다.
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+``` bash
+npm start
+```

@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import axios from 'axios';
 import Search from './Search'
 import Pagination from './Pagination'
 import Card from './Card'
 
 
-class Users extends React.Component {
+class NasaData extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -21,11 +21,18 @@ class Users extends React.Component {
             currentPage: 1,
             setCurrentPage: 1,
             postsPerPage: 2,
+            //indexOfLastPost: 0,
+            //indexOfFirstPost: 1,
+            ///////////////////
+            item: 2,
+            perItems: 0,
         }
 
         this.useEffect();
     }
     
+
+
     fetchUsers = async () => {
         try {
             this.setState({
@@ -44,7 +51,7 @@ class Users extends React.Component {
     useEffect = () => {
         this.fetchUsers();
     }
-
+    
     setText = (e) => {
         e.preventDefault();
         this.setState({text: e.target.value});
@@ -54,16 +61,34 @@ class Users extends React.Component {
         this.setState({pageNumber: pageNumber}); 
     }
 
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    componentDidMount(){
+        window.addEventListener('scroll', this._infiniteScroll, true)
+    }
+    
+    _infiniteScroll = () => {
+        let scrollHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+        let scrollTop = Math.max(document.documentElement.scrollTop, document.body.scrollTop);
+        let clientHeight = document.documentElement.clientHeight;
+
+        if(scrollTop + clientHeight === scrollHeight) {
+            this.setState({
+                preItems: this.state.items,
+                items: this.state.items+2,
+            })
+        }
+    }
+
+
     render() {
         if (this.state.loading) return <div class="loader"></div>;
         if (this.state.error) return <div>오류가 발생했습니다.</div>;
         if (!this.state.users) return null;
         
 
-        this.state.postsPerPage = 2;
         this.indexOfLastPost = this.state.currentPage * this.state.postsPerPage;
         this.indexOfFirstPost = this.indexOfLastPost - this.state.postsPerPage;
-        this.currentPosts = this.state.users.collection.items.slice(this.indexOfFirstPost, this.indexOfLastPost);
+        this.currentPosts = this.state.users.collection.items.slice(this.state.indexOfFirstPost, this.state.indexOfLastPost);
 
 
         return (
@@ -83,8 +108,9 @@ class Users extends React.Component {
                     <br /><br />
                     {this.state.users.collection.metadata.total_hits}
 
-                <div className="row">
-                        {this.state.users.collection.items.map(user => {
+                   
+                <div className={"row"}>
+                        {this.currentPosts.map(user => {
                         if (user.links && user.data[0].keywords){
                             return <Card
                                 user={user}
@@ -97,7 +123,6 @@ class Users extends React.Component {
                             />
                         }
                         else{
-                            // return <p> no-image</p>  
                             return <Card
                                 user={user}
                                 img_src={"http://design-ec.com/d/e_others_50/m_e_others_501.png"}
@@ -125,7 +150,7 @@ class Users extends React.Component {
 
 
 
-export default Users;
+export default NasaData;
 
 
 
