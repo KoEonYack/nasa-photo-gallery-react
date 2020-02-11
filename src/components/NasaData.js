@@ -19,7 +19,7 @@ class NasaData extends React.Component {
             setLoading: false,
             currentPage: 1,
             setCurrentPage: 1,
-            postsPerPage: 2,
+            postsPerPage: 6,
             //indexOfLastPost: 0,
             //indexOfFirstPost: 1,
             ///////////////////

@@ -9,11 +9,13 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "react": "^16.12.0",
+    "react-clamp-lines": "^3.0.2",
     "react-dom": "^16.12.0",
     "react-js-pagination": "^3.0.2",
     "react-line-ellipsis": "^0.14.1",
     "react-lines-ellipsis": "^0.14.1",
-    "react-scripts": "3.3.1"
+    "react-scripts": "3.3.1",
+    "read-more-react": "^1.0.10"
   },
   "scripts": {
     "start": "react-scripts start",
